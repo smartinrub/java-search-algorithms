@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BinarySearchTest {
+class BinarySearchTest {
 
     private static final int[] ELEMENTS = {16, 19, 20, 23, 45, 56, 78, 90, 96, 100};
 
