@@ -1,6 +1,5 @@
 package com.sergiomartinrubio.javasearchalgorithms.array.unordered;
 
-import com.sergiomartinrubio.javasearchalgorithms.array.unordered.UnorderedLinearSearch;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
