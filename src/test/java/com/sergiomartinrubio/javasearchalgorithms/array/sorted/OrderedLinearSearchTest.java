@@ -1,6 +1,5 @@
 package com.sergiomartinrubio.javasearchalgorithms.array.sorted;
 
-import com.sergiomartinrubio.javasearchalgorithms.array.sorted.OrderedLinearSearch;
 import com.sergiomartinrubio.javasearchalgorithms.array.unordered.UnorderedLinearSearch;
 import org.junit.jupiter.api.Test;
 

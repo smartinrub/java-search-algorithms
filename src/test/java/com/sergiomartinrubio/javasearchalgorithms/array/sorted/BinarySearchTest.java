@@ -1,6 +1,5 @@
 package com.sergiomartinrubio.javasearchalgorithms.array.sorted;
 
-import com.sergiomartinrubio.javasearchalgorithms.array.sorted.BinarySearch;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
