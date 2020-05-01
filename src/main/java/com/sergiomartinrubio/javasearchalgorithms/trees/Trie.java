@@ -1,68 +1,86 @@
 package com.sergiomartinrubio.javasearchalgorithms.trees;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Trie {
 
-    private TrieNode head;
+    private TrieNode root;
 
     private static class TrieNode {
-        Character character;
-        List<TrieNode> childNodes;
+        char character;
+        Map<Character, TrieNode> childNodes;
+        boolean isLeaf;
     }
 
-    public void addEntry(String word) {
-        if (head == null) {
-            head = new TrieNode();
-            head.childNodes = new ArrayList<>();
+    public void add(String word) {
+        if (root == null) {
+            root = new TrieNode();
+            root.childNodes = new HashMap<>();
         }
-
-        TrieNode tail = head;
+        Map<Character, TrieNode> childNodes = root.childNodes;
 
         for (int i = 0; i < word.length(); i++) {
-            boolean found = false;
-
-            for (TrieNode trieNode : tail.childNodes) {
-                if (trieNode.character.equals(word.charAt(i))) {
-                    tail = trieNode;
-                    found = true;
-                    break;
-                }
+            char currentChar = word.charAt(i);
+            TrieNode tail;
+            if (childNodes.containsKey(currentChar)) {
+                tail = childNodes.get(currentChar);
+            } else {
+                tail = new TrieNode();
+                tail.character = currentChar;
+                tail.childNodes = new HashMap<>();
+                childNodes.put(currentChar, tail);
             }
+            childNodes = tail.childNodes;
 
-            if (!found) {
-                TrieNode newTrieNode = new TrieNode();
-                newTrieNode.childNodes = new ArrayList<>();
-                newTrieNode.character = word.charAt(i);
-                tail.childNodes.add(newTrieNode);
-                tail = newTrieNode;
+            if (i == word.length() - 1) {
+                tail.isLeaf = true;
             }
         }
     }
 
-    public boolean lookup(String string) {
-        TrieNode tail = head;
-
-        for (int i = 0; i < string.length(); i++) {
-            if (tail.childNodes.size() == 0) {
-                return true;
-            }
-
-            boolean found = false;
-
-            for (TrieNode trieNode : tail.childNodes) {
-                if (trieNode.character.equals(string.charAt(i))) {
-                    found = true;
-                    tail = trieNode;
-                    break;
-                }
-            }
-
-            if (!found) {
-                return false;
+    public boolean search(String word) {
+        Map<Character, TrieNode> childNodes = root.childNodes;
+        TrieNode tail = null;
+        for (int i = 0; i < word.length(); i++) {
+            char character = word.charAt(i);
+            if (childNodes.containsKey(character)) {
+                tail = childNodes.get(character);
+                childNodes = tail.childNodes;
+            } else {
+                tail = null;
             }
         }
-        return false;
+        return tail != null && tail.isLeaf;
     }
+
+    public List<String> lookup(String prefix) {
+
+        Map<Character, TrieNode> childNodes = root.childNodes;
+        TrieNode tail = null;
+        for (int i = 0; i < prefix.length(); i++) {
+            char character = prefix.charAt(i);
+            if (childNodes.containsKey(character)) {
+                tail = childNodes.get(character);
+                childNodes = tail.childNodes;
+            } else {
+                return List.of();
+            }
+        }
+        Stack<TrieNode> stack = new Stack<>();
+        stack.push(tail);
+        TrieNode current = tail;
+        while (!stack.empty()) {
+            current = stack.pop();
+            System.out.println(current.character);
+
+            for (TrieNode trieNode : current.childNodes.values()) {
+                stack.push(trieNode);
+            }
+        }
+
+        List<String> words = new ArrayList<>();
+
+        return words;
+    }
+
 }

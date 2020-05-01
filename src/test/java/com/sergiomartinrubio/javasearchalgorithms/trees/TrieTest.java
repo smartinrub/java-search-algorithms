@@ -2,24 +2,34 @@ package com.sergiomartinrubio.javasearchalgorithms.trees;
 
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class TrieTest {
+
+    @Test
+    public void givenWordsWhenSearchReturnTrueIfFoundAndFalseIfNotFound() {
+        Trie trie = new Trie();
+        trie.add("engineering");
+        trie.add("school");
+        trie.add("hotel");
+        trie.add("traditional");
+
+        assertThat(trie.search("school")).isTrue();
+        assertThat(trie.search("house")).isFalse();
+        assertThat(trie.search("hot")).isFalse();
+    }
 
     @Test
     public void test() {
         Trie trie = new Trie();
+        trie.add("engineering");
+        trie.add("school");
+        trie.add("hotel");
+        trie.add("house");
+        trie.add("traditional");
 
-        trie.addEntry("co");
-        trie.addEntry("eng");
-        trie.addEntry("ro");
-        trie.addEntry("trad");
-        trie.addEntry("ch");
-        trie.addEntry("ru");
+        trie.lookup("ho");
 
-        System.out.println("Lookup (engineering): " + trie.lookup("engineering")); //should return true
-        System.out.println("Lookup (en): " + trie.lookup("en")); //should return false
-        System.out.println("Lookup (school): " + trie.lookup("school")); //should return false
-        System.out.println("Lookup (traditional): " + trie.lookup("traditional")); //should return true
-        System.out.println("Lookup (fetch): " + trie.lookup("fetch")); //should return false
+
     }
-
 }
