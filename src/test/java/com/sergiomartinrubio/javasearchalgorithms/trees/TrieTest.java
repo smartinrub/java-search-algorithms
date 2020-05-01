@@ -42,7 +42,7 @@ class TrieTest {
         List<String> words = trie.lookup("ho");
 
         // THEN
-//        assertThat(words.size()).isEqualTo(2);
+        assertThat(words.size()).isEqualTo(2);
         assertThat(words).contains("hotel", "house");
     }
 }
