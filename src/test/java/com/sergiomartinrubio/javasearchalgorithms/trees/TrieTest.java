@@ -29,7 +29,7 @@ class TrieTest {
     }
 
     @Test
-    public void givenWordAndPrefixWhenLookupThenReturnWordsMatchingPrefix() {
+    public void givenWordsAndPrefixWhenLookupThenReturnWordsMatchingPrefix() {
         // GIVEN
         Trie trie = new Trie();
         trie.add("engineering");
@@ -44,5 +44,22 @@ class TrieTest {
         // THEN
         assertThat(words.size()).isEqualTo(2);
         assertThat(words).contains("hotel", "house");
+    }
+
+    @Test
+    public void givenWordAndNotFoundPrefixWhenLookupThenReturnEmptyList() {
+        // GIVEN
+        Trie trie = new Trie();
+        trie.add("engineering");
+        trie.add("school");
+        trie.add("hotel");
+        trie.add("house");
+        trie.add("traditional");
+
+        // WHEN
+        List<String> words = trie.lookup("pe");
+
+        // THEN
+        assertThat(words).isEmpty();
     }
 }

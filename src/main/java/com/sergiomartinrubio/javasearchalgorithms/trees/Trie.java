@@ -87,7 +87,7 @@ public class Trie {
                 tail = trieNode.get();
                 childNodes = tail.childNodes;
             } else {
-                tail = null;
+                return null;
             }
         }
         return tail;
