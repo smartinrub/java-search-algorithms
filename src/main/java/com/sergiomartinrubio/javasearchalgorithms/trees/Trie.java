@@ -1,6 +1,9 @@
 package com.sergiomartinrubio.javasearchalgorithms.trees;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Stack;
 
 public class Trie {
 
@@ -8,27 +11,30 @@ public class Trie {
 
     private static class TrieNode {
         char character;
-        Map<Character, TrieNode> childNodes;
+        List<TrieNode> childNodes;
         boolean isLeaf;
     }
 
     public void add(String word) {
         if (root == null) {
             root = new TrieNode();
-            root.childNodes = new HashMap<>();
+            root.childNodes = new ArrayList<>();
         }
-        Map<Character, TrieNode> childNodes = root.childNodes;
+        List<TrieNode> childNodes = root.childNodes;
 
         for (int i = 0; i < word.length(); i++) {
             char currentChar = word.charAt(i);
             TrieNode tail;
-            if (childNodes.containsKey(currentChar)) {
-                tail = childNodes.get(currentChar);
+            Optional<TrieNode> trieNode = childNodes.stream()
+                    .filter(node -> node.character == currentChar)
+                    .findFirst();
+            if (trieNode.isPresent()) {
+                tail = trieNode.get();
             } else {
                 tail = new TrieNode();
                 tail.character = currentChar;
-                tail.childNodes = new HashMap<>();
-                childNodes.put(currentChar, tail);
+                tail.childNodes = new ArrayList<>();
+                childNodes.add(tail);
             }
             childNodes = tail.childNodes;
 
@@ -62,7 +68,7 @@ public class Trie {
                 word = new StringBuilder();
                 word.append(prefix);
             }
-            for (TrieNode trieNode : current.childNodes.values()) {
+            for (TrieNode trieNode : current.childNodes) {
                 stack.push(trieNode);
             }
         }
@@ -70,12 +76,15 @@ public class Trie {
     }
 
     private TrieNode getTrieNode(String word) {
-        Map<Character, TrieNode> childNodes = root.childNodes;
+        List<TrieNode> childNodes = root.childNodes;
         TrieNode tail = null;
         for (int i = 0; i < word.length(); i++) {
             char character = word.charAt(i);
-            if (childNodes.containsKey(character)) {
-                tail = childNodes.get(character);
+            Optional<TrieNode> trieNode = childNodes.stream()
+                    .filter(node -> node.character == character)
+                    .findFirst();
+            if (trieNode.isPresent()) {
+                tail = trieNode.get();
                 childNodes = tail.childNodes;
             } else {
                 tail = null;
