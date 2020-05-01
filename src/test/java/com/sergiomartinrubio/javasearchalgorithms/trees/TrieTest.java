@@ -2,25 +2,35 @@ package com.sergiomartinrubio.javasearchalgorithms.trees;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TrieTest {
 
     @Test
-    public void givenWordsWhenSearchReturnTrueIfFoundAndFalseIfNotFound() {
+    public void givenWordsWhenSearchReturnTrueIfIsFoundAndFalseIfIsNotFound() {
+        // GIVEN
         Trie trie = new Trie();
         trie.add("engineering");
         trie.add("school");
         trie.add("hotel");
         trie.add("traditional");
 
-        assertThat(trie.search("school")).isTrue();
-        assertThat(trie.search("house")).isFalse();
-        assertThat(trie.search("hot")).isFalse();
+        // WHEN
+        boolean isFirstWordFound = trie.search("school");
+        boolean isSecondWordFound = trie.search("house");
+        boolean isThirdWordFound = trie.search("hot");
+
+        // THEN
+        assertThat(isFirstWordFound).isTrue();
+        assertThat(isSecondWordFound).isFalse();
+        assertThat(isThirdWordFound).isFalse();
     }
 
     @Test
-    public void test() {
+    public void givenWordAndPrefixWhenLookupThenReturnWordsMatchingPrefix() {
+        // GIVEN
         Trie trie = new Trie();
         trie.add("engineering");
         trie.add("school");
@@ -28,8 +38,11 @@ class TrieTest {
         trie.add("house");
         trie.add("traditional");
 
-        trie.lookup("ho");
+        // WHEN
+        List<String> words = trie.lookup("ho");
 
-
+        // THEN
+        assertThat(words.size()).isEqualTo(2);
+        assertThat(words).contains("hotel", "house");
     }
 }

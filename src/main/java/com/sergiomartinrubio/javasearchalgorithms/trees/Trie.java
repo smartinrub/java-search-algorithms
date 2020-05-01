@@ -39,6 +39,37 @@ public class Trie {
     }
 
     public boolean search(String word) {
+        TrieNode tail = getTrieNode(word);
+        return tail != null && tail.isLeaf;
+    }
+
+    public List<String> lookup(String prefix) {
+        TrieNode tail = getTrieNode(prefix);
+        if (tail == null) {
+            return List.of();
+        }
+        Stack<TrieNode> stack = new Stack<>();
+        stack.push(tail);
+        TrieNode current;
+        StringBuilder word = new StringBuilder();
+        word.append(prefix, 0, prefix.length() - 1);
+        List<String> words = new ArrayList<>();
+        while (!stack.empty()) {
+            current = stack.pop();
+            word.append(current.character);
+            if (current.isLeaf) {
+                words.add(word.toString());
+                word = new StringBuilder();
+                word.append(prefix);
+            }
+            for (TrieNode trieNode : current.childNodes.values()) {
+                stack.push(trieNode);
+            }
+        }
+        return words;
+    }
+
+    private TrieNode getTrieNode(String word) {
         Map<Character, TrieNode> childNodes = root.childNodes;
         TrieNode tail = null;
         for (int i = 0; i < word.length(); i++) {
@@ -50,37 +81,7 @@ public class Trie {
                 tail = null;
             }
         }
-        return tail != null && tail.isLeaf;
-    }
-
-    public List<String> lookup(String prefix) {
-
-        Map<Character, TrieNode> childNodes = root.childNodes;
-        TrieNode tail = null;
-        for (int i = 0; i < prefix.length(); i++) {
-            char character = prefix.charAt(i);
-            if (childNodes.containsKey(character)) {
-                tail = childNodes.get(character);
-                childNodes = tail.childNodes;
-            } else {
-                return List.of();
-            }
-        }
-        Stack<TrieNode> stack = new Stack<>();
-        stack.push(tail);
-        TrieNode current = tail;
-        while (!stack.empty()) {
-            current = stack.pop();
-            System.out.println(current.character);
-
-            for (TrieNode trieNode : current.childNodes.values()) {
-                stack.push(trieNode);
-            }
-        }
-
-        List<String> words = new ArrayList<>();
-
-        return words;
+        return tail;
     }
 
 }
