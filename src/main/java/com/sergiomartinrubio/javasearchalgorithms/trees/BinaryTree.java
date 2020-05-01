@@ -15,6 +15,10 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Add value in binary tree
+     * @param value to be added
+     */
     public void insert(int value) {
         Node<T> newNode = new Node<T>(value);
         Node<T> current = root;
@@ -39,6 +43,11 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Check if the binary tree contains a value
+     * @param value to be found
+     * @return true if value was found otherwise return false
+     */
     public boolean contains(int value) {
         return recursiveSearch(root, value) != null;
     }
@@ -53,6 +62,10 @@ public class BinaryTree<T> {
         }
     }
 
+    /**
+     * Find minimum value in binary tree
+     * @return the minimum value
+     */
     public int minimum() {
         return findMinimum(root).value;
     }
@@ -65,6 +78,10 @@ public class BinaryTree<T> {
         return current;
     }
 
+    /**
+     * Find maximum value in binary tree
+     * @return maximum value
+     */
     public int maximum() {
         return findMaximum(root).value;
     }
@@ -77,6 +94,10 @@ public class BinaryTree<T> {
         return current;
     }
 
+    /**
+     * Delete value from binary tree
+     * @param value value to be removed
+     */
     public void delete(int value) {
         deleteNode(root, value);
     }

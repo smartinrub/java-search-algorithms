@@ -15,6 +15,10 @@ public class Trie {
         boolean isLeaf;
     }
 
+    /**
+     * Add word to trie
+     * @param word to add to trie
+     */
     public void add(String word) {
         if (root == null) {
             root = new TrieNode();
@@ -44,11 +48,21 @@ public class Trie {
         }
     }
 
+    /**
+     * Search word in trie
+     * @param word to search in trie
+     * @return true if the word was found otherwise return false
+     */
     public boolean search(String word) {
         TrieNode tail = getTrieNode(word);
         return tail != null && tail.isLeaf;
     }
 
+    /**
+     * Use _Depth First Search_ (DFS) to go down the trie while building string for each subtrie.
+     * @param prefix use to find words
+     * @return list of words that match the prefix
+     */
     public List<String> lookup(String prefix) {
         TrieNode tail = getTrieNode(prefix);
         if (tail == null) {
