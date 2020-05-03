@@ -64,6 +64,7 @@ public class Trie {
      * @return list of words that match the prefix
      */
     public List<String> lookup(String prefix) {
+        // Use the previous function to find the last node of the prefix
         TrieNode tail = getTrieNode(prefix);
         if (tail == null) {
             return List.of();
@@ -72,14 +73,17 @@ public class Trie {
         stack.push(tail);
         TrieNode current;
         StringBuilder word = new StringBuilder();
+        // Start building the first word with the prefix
         word.append(prefix, 0, prefix.length() - 1);
         List<String> words = new ArrayList<>();
         while (!stack.empty()) {
             current = stack.pop();
             word.append(current.character);
+            // End of the word?
             if (current.isLeaf) {
                 words.add(word.toString());
                 word = new StringBuilder();
+                // The prefix is added for each new word
                 word.append(prefix);
             }
             for (TrieNode trieNode : current.childNodes) {
