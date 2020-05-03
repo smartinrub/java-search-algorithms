@@ -1,6 +1,6 @@
-package com.sergiomartinrubio.javasearchalgorithms.trees;
+package com.sergiomartinrubio.javasearchalgorithms.tree;
 
-public class BinaryTree<T> {
+public class BinaryTreeSearch<T> {
 
     private Node<T> root;
 

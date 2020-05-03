@@ -1,4 +1,4 @@
-package com.sergiomartinrubio.javasearchalgorithms.trees;
+package com.sergiomartinrubio.javasearchalgorithms.tree;
 
 import org.junit.jupiter.api.Test;
 

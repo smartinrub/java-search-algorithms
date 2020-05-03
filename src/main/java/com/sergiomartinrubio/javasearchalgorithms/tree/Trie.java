@@ -1,4 +1,4 @@
-package com.sergiomartinrubio.javasearchalgorithms.trees;
+package com.sergiomartinrubio.javasearchalgorithms.tree;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +69,8 @@ public class Trie {
         if (tail == null) {
             return List.of();
         }
+
+        // DFS algorithm
         Stack<TrieNode> stack = new Stack<>();
         stack.push(tail);
         TrieNode current;

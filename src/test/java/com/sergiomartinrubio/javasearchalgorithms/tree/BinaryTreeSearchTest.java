@@ -1,32 +1,32 @@
-package com.sergiomartinrubio.javasearchalgorithms.trees;
+package com.sergiomartinrubio.javasearchalgorithms.tree;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BinaryTreeTest {
+class BinaryTreeSearchTest {
 
-    private BinaryTree<Integer> binaryTree;
+    private BinaryTreeSearch<Integer> binaryTreeSearch;
 
     @BeforeEach
     public void setup() {
-        binaryTree = new BinaryTree<>();
-        binaryTree.insert(12);
-        binaryTree.insert(18);
-        binaryTree.insert(5);
-        binaryTree.insert(15);
-        binaryTree.insert(9);
-        binaryTree.insert(2);
-        binaryTree.insert(19);
-        binaryTree.insert(17);
+        binaryTreeSearch = new BinaryTreeSearch<>();
+        binaryTreeSearch.insert(12);
+        binaryTreeSearch.insert(18);
+        binaryTreeSearch.insert(5);
+        binaryTreeSearch.insert(15);
+        binaryTreeSearch.insert(9);
+        binaryTreeSearch.insert(2);
+        binaryTreeSearch.insert(19);
+        binaryTreeSearch.insert(17);
     }
 
     @Test
     public void givenBinaryTreeThatContainsValueWhenContainsThenReturnTrue() {
 
         // WHEN
-        boolean isFound = binaryTree.contains(15);
+        boolean isFound = binaryTreeSearch.contains(15);
 
         // THEN
         assertThat(isFound).isTrue();
@@ -36,7 +36,7 @@ class BinaryTreeTest {
     public void givenBinaryTreeThatDoesNotContainValueWhenContainsThenReturnFalse() {
 
         // WHEN
-        boolean isFound = binaryTree.contains(10);
+        boolean isFound = binaryTreeSearch.contains(10);
 
         // THEN
         assertThat(isFound).isFalse();
@@ -46,7 +46,7 @@ class BinaryTreeTest {
     public void givenBinaryTreeWithValuesWhenMinimumThenReturnMinimumValue() {
 
         // WHEN
-        int minimum = binaryTree.minimum();
+        int minimum = binaryTreeSearch.minimum();
 
         // THEN
         assertThat(minimum).isEqualTo(2);
@@ -56,7 +56,7 @@ class BinaryTreeTest {
     public void givenBinaryTreeWithValuesWhenMaximumThenReturnMaximumValue() {
 
         // WHEN
-        int maximum = binaryTree.maximum();
+        int maximum = binaryTreeSearch.maximum();
 
         // THEN
         assertThat(maximum).isEqualTo(19);
@@ -65,14 +65,14 @@ class BinaryTreeTest {
     @Test
     public void givenBinaryTreeWithValuesWhenDeleteThenValueIsDeleted() {
 
-        boolean isValueFound = binaryTree.contains(9);
+        boolean isValueFound = binaryTreeSearch.contains(9);
         assertThat(isValueFound).isTrue();
 
         // WHEN
-        binaryTree.delete(9);
+        binaryTreeSearch.delete(9);
 
         // THEN
-        boolean isDeletedValueFound = binaryTree.contains(9);
+        boolean isDeletedValueFound = binaryTreeSearch.contains(9);
         assertThat(isDeletedValueFound).isFalse();
     }
 
