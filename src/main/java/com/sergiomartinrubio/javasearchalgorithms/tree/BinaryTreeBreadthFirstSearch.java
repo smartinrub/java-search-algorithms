@@ -46,6 +46,12 @@ public class BinaryTreeBreadthFirstSearch {
         return current;
     }
 
+    /**
+     * Search value in Binary Tree using Breadth First Search Algorithm
+     *
+     * @param value to be found
+     * @return true if value is found otherwise return false
+     */
     public boolean search(int value) {
         Queue<Node> queue = new ArrayDeque<>();
 
