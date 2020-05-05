@@ -16,6 +16,11 @@ public class TernarySearchTree {
         }
     }
 
+    /**
+     * Add string to ternary search tree with recursion
+     *
+     * @param word to be inserted
+     */
     public void add(String word) {
         int position = 0;
         if (root == null) {
@@ -33,7 +38,7 @@ public class TernarySearchTree {
         if (word.charAt(position) < node.value) {
             if (node.left != null) {
                 recursiveInsert(node.left, word, position);
-            } else  {
+            } else {
                 node.left = new TernaryTreeNode(word.charAt(position++));
                 if (position == word.length()) {
                     node.left.isLeaf = true;
@@ -44,7 +49,7 @@ public class TernarySearchTree {
         } else if (word.charAt(position) > node.value) {
             if (node.right != null) {
                 recursiveInsert(node.right, word, position);
-            } else  {
+            } else {
                 node.right = new TernaryTreeNode(word.charAt(position++));
                 if (position == word.length()) {
                     node.right.isLeaf = true;
@@ -66,6 +71,12 @@ public class TernarySearchTree {
         }
     }
 
+    /**
+     * Search word in the ternary search tree
+     *
+     * @param word to be searched
+     * @return true if word is found, otherwise return false
+     */
     public boolean search(String word) {
         TernaryTreeNode currentNode = root;
         int position = 0;
