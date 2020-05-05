@@ -1,6 +1,6 @@
 package com.sergiomartinrubio.javasearchalgorithms.tree;
 
-public class BinaryTreeSearch<T> {
+public class BinarySearchTree<T> {
 
     private Node<T> root;
 
@@ -20,7 +20,7 @@ public class BinaryTreeSearch<T> {
      * @param value to be added
      */
     public void insert(int value) {
-        Node<T> newNode = new Node<T>(value);
+        Node<T> newNode = new Node<>(value);
         Node<T> current = root;
         Node<T> leaf = null;
 
