@@ -1,4 +1,4 @@
-package com.sergiomartinrubio.javasearchalgorithms.tree;
+package com.sergiomartinrubio.javasearchalgorithms.string;
 
 import java.util.ArrayList;
 import java.util.List;

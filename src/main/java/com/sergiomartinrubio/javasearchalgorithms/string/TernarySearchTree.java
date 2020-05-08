@@ -1,4 +1,4 @@
-package com.sergiomartinrubio.javasearchalgorithms.tree;
+package com.sergiomartinrubio.javasearchalgorithms.string;
 
 public class TernarySearchTree {
 

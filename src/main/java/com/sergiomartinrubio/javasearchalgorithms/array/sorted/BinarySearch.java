@@ -15,6 +15,8 @@ public class BinarySearch {
         int midPoint;
 
         while (lowerBound <= upperBound) {
+            // midPoint = (lowerBound + upperBound) / 2 has an overflow bug with arrays whose
+            // length is greater that 2^31
             midPoint = lowerBound + (upperBound - lowerBound) / 2;
 
             if (value == elements[midPoint]) {

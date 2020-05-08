@@ -1,5 +1,6 @@
 package com.sergiomartinrubio.javasearchalgorithms.tree;
 
+import com.sergiomartinrubio.javasearchalgorithms.string.Trie;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
