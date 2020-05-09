@@ -1,11 +1,12 @@
 package com.sergiomartinrubio.javasearchalgorithms.tree;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.logging.Logger;
 
-public class BinaryTreeDepthFirstSearch {
+public class BreadthFirstSearch {
 
-    private final Logger LOGGER = Logger.getLogger(BinaryTreeDepthFirstSearch.class.getName());
+    private final Logger LOGGER = Logger.getLogger(BreadthFirstSearch.class.getName());
 
     private Node root;
 
@@ -46,43 +47,30 @@ public class BinaryTreeDepthFirstSearch {
     }
 
     /**
-     * Check if binary tree is empty
-     *
-     * @return true if binary tree is empty otherwise return false
-     */
-    public boolean isEmpty() {
-        return root == null;
-    }
-
-    /**
-     * Search value in Binary Tree using Depth First Search Algorithm
+     * Search value in Binary Tree using Breadth First Search Algorithm
      *
      * @param value to be found
      * @return true if value is found otherwise return false
      */
-    public boolean PreOrderSearch(int value) {
-        Stack<Node> stack = new Stack<>();
-        Node currentNode;
-        stack.push(this.root);
+    public boolean search(int value) {
+        Queue<Node> queue = new ArrayDeque<>();
 
-        while (!stack.empty()) {
-            currentNode = stack.pop();
-
+        queue.add(this.root);
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.poll();
             LOGGER.info(String.valueOf(currentNode.value));
             if (currentNode.value == value) {
                 return true;
             }
 
-            if (currentNode.right != null) {
-                stack.push(currentNode.right);
-            }
-
             if (currentNode.left != null) {
-                stack.push(currentNode.left);
+                queue.add(currentNode.left);
             }
 
+            if (currentNode.right != null) {
+                queue.add(currentNode.right);
+            }
         }
         return false;
     }
-
 }

@@ -1,12 +1,11 @@
 package com.sergiomartinrubio.javasearchalgorithms.tree;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.Stack;
 import java.util.logging.Logger;
 
-public class BinaryTreeBreadthFirstSearch {
+public class DepthFirstSearch {
 
-    private final Logger LOGGER = Logger.getLogger(BinaryTreeBreadthFirstSearch.class.getName());
+    private final Logger LOGGER = Logger.getLogger(DepthFirstSearch.class.getName());
 
     private Node root;
 
@@ -47,30 +46,43 @@ public class BinaryTreeBreadthFirstSearch {
     }
 
     /**
-     * Search value in Binary Tree using Breadth First Search Algorithm
+     * Check if binary tree is empty
+     *
+     * @return true if binary tree is empty otherwise return false
+     */
+    public boolean isEmpty() {
+        return root == null;
+    }
+
+    /**
+     * Search value in Binary Tree using Depth First Search Algorithm
      *
      * @param value to be found
      * @return true if value is found otherwise return false
      */
-    public boolean search(int value) {
-        Queue<Node> queue = new ArrayDeque<>();
+    public boolean PreOrderSearch(int value) {
+        Stack<Node> stack = new Stack<>();
+        Node currentNode;
+        stack.push(this.root);
 
-        queue.add(this.root);
-        while (!queue.isEmpty()) {
-            Node currentNode = queue.poll();
+        while (!stack.empty()) {
+            currentNode = stack.pop();
+
             LOGGER.info(String.valueOf(currentNode.value));
             if (currentNode.value == value) {
                 return true;
             }
 
-            if (currentNode.left != null) {
-                queue.add(currentNode.left);
+            if (currentNode.right != null) {
+                stack.push(currentNode.right);
             }
 
-            if (currentNode.right != null) {
-                queue.add(currentNode.right);
+            if (currentNode.left != null) {
+                stack.push(currentNode.left);
             }
+
         }
         return false;
     }
+
 }
